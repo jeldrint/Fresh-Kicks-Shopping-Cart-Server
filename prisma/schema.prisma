@@ -15,14 +15,17 @@ datasource db {
 
 model Shoes {
     id          Int         @id @default(autoincrement())
+    name_id     String?
     name        String
     brand       String
     price       Float
-    discount    Float
+    discount    Float?
+    rating      Float?
     img_URL     String
     createdAt   DateTime    @default(now())
     updatedAt   DateTime    @updatedAt
-    category    Category?    
+    category    Category?
+
 }
 
 model Category {
@@ -30,9 +33,12 @@ model Category {
     new_arrival     Boolean @default(true)
     hot_item        Boolean
     men             Boolean
+    menShoeSize     MenShoeSize?
     women           Boolean
+    womenShoeSize   WomenShoeSize?
     kids            Boolean
-
+    kidsShoeSize    KidsShoeSize?
+    
     shoe            Shoes   @relation(fields: [shoeId], references: [id])
     shoeId          Int     @unique
 }
@@ -45,6 +51,57 @@ model User {
     last_name       String
     role            Role        @default(CUSTOMER)
     createdAt       DateTime    @default(now())
+}
+
+
+model MenShoeSize {
+    id          Int     @id @default(autoincrement())
+    eur_39      Boolean
+    eur_40      Boolean
+    eur_41      Boolean
+    eur_42      Boolean
+    eur_43      Boolean
+    eur_44      Boolean
+    eur_45      Boolean
+    eur_46      Boolean
+    eur_47      Boolean
+    eur_48      Boolean
+    eur_49      Boolean
+
+    category    Category    @relation(fields: [categoryId], references: [id])
+    categoryId  Int         @unique
+}
+
+model WomenShoeSize {
+    id          Int     @id @default(autoincrement())
+    eur_33      Boolean
+    eur_34      Boolean
+    eur_35      Boolean
+    eur_36      Boolean
+    eur_37      Boolean
+    eur_38      Boolean
+    eur_39      Boolean
+    eur_40      Boolean
+    eur_41      Boolean
+
+    category    Category    @relation(fields: [categoryId], references: [id])
+    categoryId  Int         @unique
+}
+
+model KidsShoeSize {
+    id          Int     @id @default(autoincrement())
+    eur_30      Boolean
+    eur_31      Boolean
+    eur_32      Boolean
+    eur_33      Boolean
+    eur_34      Boolean
+    eur_35      Boolean
+    eur_36      Boolean
+    eur_37      Boolean
+    eur_38      Boolean
+
+    category    Category    @relation(fields: [categoryId], references: [id])
+    categoryId  Int         @unique
 }
 
 enum Role {
