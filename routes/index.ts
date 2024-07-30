@@ -8,26 +8,26 @@ export const router: Router = express.Router();
 router.get('/', async (req: Request, res: Response) =>{
     res.send('Welcome to Fresh Kicks API!')
 
-    try{
-        await prisma.shoes.update({
-            where: {
-                id: 10
-            },
-            data: {
-                category: {
-                    update: {
-                        kids: true
-                    }
-                }
-            }
-        })
-    }catch(error){
-        if (error instanceof Error){
-            res.send(error.message)
-        }else{
-            res.send('This is a user-generated error: There is an error occured somewhere')
-        }
-    }
+    // try{
+    //     await prisma.shoes.update({
+    //         where: {
+    //             id: 10
+    //         },
+    //         data: {
+    //             category: {
+    //                 update: {
+    //                     kids: true
+    //                 }
+    //             }
+    //         }
+    //     })
+    // }catch(error){
+    //     if (error instanceof Error){
+    //         res.send(error.message)
+    //     }else{
+    //         res.send('This is a user-generated error: There is an error occured somewhere')
+    //     }
+    // }
 });
 
 router.get('/api', async (req: Request, res: Response) => {
@@ -41,6 +41,9 @@ router.get('/api', async (req: Request, res: Response) => {
                         kidsShoeSize: true
                     }
                 }
+            },
+            orderBy: {
+                id: 'asc'
             }
         })
         res.json(allShoes)
