@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,97 +8,91 @@ datasource db {
 }
 
 model Shoes {
-    id          Int         @id @default(autoincrement())
-    name_id     String?
-    name        String
-    brand       String
-    price       Float
-    discount    Float?
-    rating      Float?
-    img_URL     String
-    createdAt   DateTime    @default(now())
-    updatedAt   DateTime    @updatedAt
-    category    Category?
-
+  id        Int       @id @default(autoincrement())
+  name_id   String
+  name      String
+  brand     String
+  price     Float
+  discount  Float?
+  rating    Float?
+  img_URL   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  category  Category?
 }
 
 model Category {
-    id              Int     @id @default(autoincrement())
-    new_arrival     Boolean @default(true)
-    hot_item        Boolean
-    men             Boolean
-    menShoeSize     MenShoeSize?
-    women           Boolean
-    womenShoeSize   WomenShoeSize?
-    kids            Boolean
-    kidsShoeSize    KidsShoeSize?
-    
-    shoe            Shoes   @relation(fields: [shoeId], references: [id])
-    shoeId          Int     @unique
+  id            Int            @id @default(autoincrement())
+  new_arrival   Boolean        @default(true)
+  hot_item      Boolean
+  men           Boolean
+  women         Boolean
+  kids          Boolean
+  shoeId        Int            @unique
+  shoe          Shoes          @relation(fields: [shoeId], references: [id], onDelete: Cascade)
+  kidsShoeSize  KidsShoeSize?
+  menShoeSize   MenShoeSize?
+  womenShoeSize WomenShoeSize?
 }
 
 model User {
-    id              Int         @id @default(autoincrement())
-    email           String      @unique
-    user_name       String      @unique
-    first_name      String
-    last_name       String
-    role            Role        @default(CUSTOMER)
-    createdAt       DateTime    @default(now())
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  user_name  String   @unique
+  first_name String
+  last_name  String
+  role       Role     @default(CUSTOMER)
+  createdAt  DateTime @default(now())
 }
 
-
 model MenShoeSize {
-    id          Int     @id @default(autoincrement())
-    eur_39      Boolean
-    eur_40      Boolean
-    eur_41      Boolean
-    eur_42      Boolean
-    eur_43      Boolean
-    eur_44      Boolean
-    eur_45      Boolean
-    eur_46      Boolean
-    eur_47      Boolean
-    eur_48      Boolean
-    eur_49      Boolean
-
-    category    Category    @relation(fields: [categoryId], references: [id])
-    categoryId  Int         @unique
+  id         Int      @id @default(autoincrement())
+  eur_39     Boolean
+  eur_40     Boolean
+  eur_41     Boolean
+  eur_42     Boolean
+  eur_43     Boolean
+  eur_44     Boolean
+  eur_45     Boolean
+  eur_46     Boolean
+  eur_47     Boolean
+  eur_48     Boolean
+  eur_49     Boolean
+  categoryId Int      @unique
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }
 
 model WomenShoeSize {
-    id          Int     @id @default(autoincrement())
-    eur_33      Boolean
-    eur_34      Boolean
-    eur_35      Boolean
-    eur_36      Boolean
-    eur_37      Boolean
-    eur_38      Boolean
-    eur_39      Boolean
-    eur_40      Boolean
-    eur_41      Boolean
-
-    category    Category    @relation(fields: [categoryId], references: [id])
-    categoryId  Int         @unique
+  id         Int      @id @default(autoincrement())
+  eur_33     Boolean
+  eur_34     Boolean
+  eur_35     Boolean
+  eur_36     Boolean
+  eur_37     Boolean
+  eur_38     Boolean
+  eur_39     Boolean
+  eur_40     Boolean
+  eur_41     Boolean
+  categoryId Int      @unique
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }
 
 model KidsShoeSize {
-    id          Int     @id @default(autoincrement())
-    eur_30      Boolean
-    eur_31      Boolean
-    eur_32      Boolean
-    eur_33      Boolean
-    eur_34      Boolean
-    eur_35      Boolean
-    eur_36      Boolean
-    eur_37      Boolean
-    eur_38      Boolean
-
-    category    Category    @relation(fields: [categoryId], references: [id])
-    categoryId  Int         @unique
+  id         Int      @id @default(autoincrement())
+  eur_30     Boolean
+  eur_31     Boolean
+  eur_32     Boolean
+  eur_33     Boolean
+  eur_34     Boolean
+  eur_35     Boolean
+  eur_36     Boolean
+  eur_37     Boolean
+  eur_38     Boolean
+  categoryId Int      @unique
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }
 
 enum Role {
-    CUSTOMER
-    ADMIN
+  CUSTOMER
+  ADMIN
 }

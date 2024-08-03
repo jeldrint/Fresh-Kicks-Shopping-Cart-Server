@@ -4,7 +4,7 @@ CREATE TYPE "Role" AS ENUM ('CUSTOMER', 'ADMIN');
 -- CreateTable
 CREATE TABLE "Shoes" (
     "id" SERIAL NOT NULL,
-    "name_id" TEXT,
+    "name_id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "brand" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
