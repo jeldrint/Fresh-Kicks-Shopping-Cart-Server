@@ -9,49 +9,31 @@ router.get('/', async (req: Request, res: Response) =>{
     res.send('Welcome to Fresh Kicks API!')
 
     // try{
-    //     await prisma.shoes.create({
-    //         data: {
-    //             name: "JORDAN TATUM 2 PF MEN'S BASKETBALL SHOES - MINT FOAM",
-    //             name_id: 'jordan-tatum-2-pf-men-s-basketball-shoes-mint-foam',
-    //             brand: 'Nike',
-    //             price: 7095,
-    //             discount: 0.1,
-    //             img_URL: "https://www.footlocker.ph/media/catalog/product/cache/90a31bdacdbcafcbfc210df8b20fe81f/0/8/0803-NIKFJ6458300MNT008-1.jpg",
+    //     await prisma.shoes.update({
+    //         where: {
+    //             id: 8,
     //             category: {
-    //                 create: {
-    //                     new_arrival: true,
-    //                     hot_item: false,
-    //                     men: true,
+    //                 men: false
+    //             }
+    //         },
+    //         data: {
+    //             category: {
+    //                 update: {
     //                     menShoeSize:{
     //                         create: {
-    //                             eur_39: true,
-    //                             eur_40: true,
-    //                             eur_41: true,
+    //                             eur_39: false,
+    //                             eur_40: false,
+    //                             eur_41: false,
     //                             eur_42: false,
-    //                             eur_43: true,
+    //                             eur_43: false,
     //                             eur_44: false,
-    //                             eur_45: true,
+    //                             eur_45: false,
     //                             eur_46: false,
-    //                             eur_47: true,
-    //                             eur_48: true,
-    //                             eur_49: true,
+    //                             eur_47: false,
+    //                             eur_48: false,
+    //                             eur_49: false,
     //                         }
     //                     },
-    //                     women: false,
-    //                     kids: true,
-    //                     kidsShoeSize: {
-    //                         create: {
-    //                             eur_30: true,
-    //                             eur_31: true,
-    //                             eur_32: false,
-    //                             eur_33: true,
-    //                             eur_34: true,
-    //                             eur_35: true,
-    //                             eur_36: false,
-    //                             eur_37: true,
-    //                             eur_38: true
-    //                         }
-    //                     }
     //                 }
     //             }
     //         }
